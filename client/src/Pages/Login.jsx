@@ -13,7 +13,7 @@ function Login() {
 
 const handleSubmit=(e)=>{
   e.preventDefault() ;
-  axios.post("https://localhost:8000/api/Login",{email,password}) 
+  axios.post("http://localhost:8000/api/Login",{email,password}) 
 .then(result=>{
   console.log(result)
   if(result.data.message==="Login successful"){

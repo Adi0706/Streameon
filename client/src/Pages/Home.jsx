@@ -6,7 +6,7 @@ import { FaMicrophone, FaMicrophoneSlash, FaVideo, FaVideoSlash } from 'react-ic
 import HomeNavbar from '../Components/HomeNavbar'
 import Background from "../Media/LandingImage.png";
 
-const socket = io.connect('https://localhost:8000');
+const socket = io.connect('http://localhost:8000');
 
 function Home() {
   const [me, setMe] = useState(""); // State to store user ID

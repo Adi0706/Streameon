@@ -8,6 +8,7 @@ const { Server } = require('socket.io');
 const http = require('http');
 const jwt = require("jsonwebtoken")  ; 
 const nodemailer = require('nodemailer') ; 
+const path=require("path");
 
 
 dotenv.config();
@@ -20,7 +21,7 @@ const MONGOURL = process.env.MONGO_ATLAS_CONNECTION_URL;
 
 const io = new Server(server, {
     cors: {
-        origin: "https://localhost:3000",
+        origin: "http://localhost:3000",
         methods: ["GET", "POST"]
     }
 });
@@ -48,27 +49,28 @@ try {
 
 app.use(cors(
     {
-        origin:["https://localhost:3000"],
+        origin:["http://localhost:3000"],
         methods:["POST","GET"] , 
         credentials:true
     }
 ));
 app.use(express.json());
 
-const __dirname1 = path.resolve();
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname1, "../client/build")));
 
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"))
-  );
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running..");
-  });
+const clientBuildPath = path.resolve(__dirname, '../client/build');
+if(process.env.NODE_ENV==='production'){
+    app.use(express.static(clientBuildPath))
+
+    app.get('*',(req,res)=>{
+        res.sendFile(path.join(clientBuildPath,"index.html")) ; 
+    })
+
+}else{
+    app.get('/',(req,res)=>{
+        return res.send("API RUNNING SUCESSFULLY") ; 
+    })
 }
-
 
 
 

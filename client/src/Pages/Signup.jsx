@@ -17,7 +17,7 @@ function Signup() {
 
   const handleSubmit=(e)=>{
     e.preventDefault() ; 
-    axios.post('https://localhost:8000/api/Signup',{name,email,password})
+    axios.post('http://localhost:8000/api/Signup',{name,email,password})
     .then(result=>{
       console.log(result)
      if(result.data.message==="Success"){

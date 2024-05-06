@@ -11,7 +11,7 @@ function ForgotPassword() {
 
 const handleSubmit=(e)=>{
 e.preventDefault() ; 
-axios.post('https://localhost:8000/api/ForgotPassword',{email})
+axios.post('http://localhost:8000/api/ForgotPassword',{email})
 .then(res=>{
   if(res.data.message==='Success'){
 navigate('/Login');

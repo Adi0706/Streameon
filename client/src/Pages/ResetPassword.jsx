@@ -14,7 +14,7 @@ function ResetPassword() {
     e.preventDefault();
     console.log("Submitting password reset request...");
 
-    axios.post(`https://localhost:8000/api/ResetPassword/${id}/${token}`, { password })
+    axios.post(`http://localhost:8000/api/ResetPassword/${id}/${token}`, { password })
       .then(res => {
         console.log('Response', res.data);
         navigate('/Login');
