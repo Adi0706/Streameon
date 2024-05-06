@@ -28,7 +28,9 @@ function Signup() {
     .catch(err=>console.log(err))
 
   }
+  const handleGoogleAuth=()=>{
 
+  }
 
   return (
     <>

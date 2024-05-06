@@ -8,8 +8,7 @@ const { Server } = require('socket.io');
 const http = require('http');
 const jwt = require("jsonwebtoken")  ; 
 const nodemailer = require('nodemailer') ; 
-const path=require("path");
-
+const path = require('path')
 
 dotenv.config();
 
@@ -47,32 +46,23 @@ try {
     console.log("Connection error: " + err);
 }
 
-app.use(cors(
-    {
-        origin:["http://localhost:3000"],
-        methods:["POST","GET"] , 
-        credentials:true
-    }
-));
+app.use(cors());
 app.use(express.json());
 
 
 
+// Serve static files in production
 const clientBuildPath = path.resolve(__dirname, '../client/build');
-
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(clientBuildPath));
-
     app.get('*', (req, res) => {
-        res.sendFile(path.join(clientBuildPath, "index.html"));
+        res.sendFile(path.join(clientBuildPath, 'index.html'));
     });
-
 } else {
     app.get('/', (req, res) => {
-        return res.send("API RUNNING SUCCESSFULLY");
+        return res.send('API RUNNING SUCCESSFULLY');
     });
 }
-
 
 
 
